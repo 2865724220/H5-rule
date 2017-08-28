@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta chartset="utf-8">
+	<title>数据同步</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
+	 <!--优先使用 IE 最新版本和 Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <!--禁止百度SiteApp转码-->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="screen-orientation" content="portrait">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body style="background:#fff;">
+	<div class="data-sync">
+		<img class="data-banner" src="images/data_banner.jpg" alt="">
+		<ul class="data-step">
+			<li class="step-on">
+				<span class="step-title">第一步，填写蚁帮数据</span>
+				<div class="step-input-wrap">
+					<div class="input-w">
+						<span>填写在蚁帮平台发布的服务标题</span>
+						<div class="input-con">
+							<input type="text">
+						</div>
+					</div>
+					<div class="input-w">
+						<span>填写注册蚁帮的手机号码</span>
+						<div class="input-con">
+							<input type="tel" id="phone">
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<span  class="step-title">第二步，填写其它平台数据</span>
+				<div class="step-input-wrap">
+					<div class="input-w">
+						<span>填写其它平台名称</span>
+						<div class="input-con">
+							<input type="text">
+						</div>
+					</div>
+					<div class="input-w">
+						<span>填输入服务订单浏览数据</span>
+						<div class="input-con">
+							<input type="text">
+						</div>
+					</div>
+					<div class="input-w">
+						<span>请输入服务订单已售次数</span>
+						<div class="input-con">
+							<input type="number">
+						</div>
+					</div>
+					<div class="input-w">
+						<span>请输入星际评数</span>
+						<div class="input-con">
+							<input type="number">
+						</div>
+					</div>
+				</div>
+			</li>
+			<li>
+				<span  class="step-title">第三步，上传截图有助于快审核</span>
+				<div class="img-upload">
+				<div class="img-line clearfix">
+					<div class="img-wrap">
+						<input type="file" id="photo">
+						<img id="img-photo" src="./images/photo.png" alt="">
+					</div>
+					<div class="img-wrap">
+						<!-- <input type="file" id="photo"> -->
+						<img id="img-photo" src="./images/photo-01.png" alt="">
+						<i class="img-delete"></i>
+					</div>
+					<div class="img-wrap">
+						<!-- <input type="file" id="photo"> -->
+						<img id="img-photo" src="./images/photo-02.png" alt="">
+						<i class="img-delete"></i>
+					</div>
+					<div class="img-wrap">
+						<!-- <input type="file" id="photo"> -->
+						<img id="img-photo" src="./images/photo-03.png" alt="">
+						<i class="img-delete"></i>
+					</div>
+				</div>
+				</div>
+			</li>
+		</ul>
+		<a href="#" class="data-register active">立即注册</a>
+	</div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/base.js"></script>
+<script>
+	document.getElementById('photo').addEventListener('change',function(e){
+		
+		var files = this.files;
+		var img = new Image();
+		var reader = new FileReader();
+		reader.readAsDataURL(files[0]);
+		reader.onload = function(e){
+			document.getElementById('img-photo').src = this.result;
+		}
+	});
+
+	$(".img-delete").on("click",function(){
+		$(this).parents('.img-wrap').remove();
+	});
+
+
+$(".input-con input").on("blur",function(){
+ 		var _this =$(this);
+ 		if(_this.val().length > 0){
+ 			$(this).parents(".input-con").removeClass("wrong").addClass("right");
+ 		}else{
+		 	$(this).parents(".input-con").removeClass("right").addClass("wrong");
+ 		}
+ 	})
+
+	// 判断手机号码
+	// 验证手机号
+		function isPhoneNo(phone) { 
+		 var pattern = /^1[34578]\d{9}$/; 
+		 return pattern.test(phone); 
+		}
+
+ 	$("#phone").on('blur',function(){
+ 		var phone=$.trim($('#phone').val());
+ 		if ($.trim($('#phone').val()).length > 0 && isPhoneNo(phone) == true ) { 
+ 			$(this).parents(".input-con").removeClass("wrong").addClass("right");
+ 		}else{
+		 	$(this).parents(".input-con").removeClass("right").addClass("wrong");
+		 }
+		
+ 	})
+
+ 	
+
+</script>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta chartset="utf-8">
+	<title>微信公众号弹窗</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
+	 <!--优先使用 IE 最新版本和 Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <!--禁止百度SiteApp转码-->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="screen-orientation" content="portrait">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div class="index-wrap">
+		<div class="index-alert-wrap">
+			<div class="index-alert-con">
+				<img src="images/index_share.png" alt="">
+				<a href="#">共享数据服务</a>
+			</div>
+			<div class="index-close"></div>
+
+		</div>
+	</div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/base.js"></script>
+<script>
+	$(".index-close").on("click",function(){
+		$('.index-alert-wrap').hide();
+	})
+</script>
+</html>

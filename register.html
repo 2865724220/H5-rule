@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta chartset="utf-8">
+	<title>注册</title>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
+	 <!--优先使用 IE 最新版本和 Chrome-->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <!--禁止百度SiteApp转码-->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="screen-orientation" content="portrait">
+	<link rel="stylesheet" type="text/css" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div class="register-wrap">
+		<div class="register-from">
+			<img class="register-title" src="images/register_title.png" alt="">
+			<span class="register-text">将其他平台的服务数据转移到蚁帮</span>
+			<span class="register-text">让您的努力得到延续，不再从零开始</span>
+			<div class="input-wrap">
+				<div class="input-line">
+					<i class="phone-icon"></i>
+					<input type="number" placeholder="请输入手机号码">
+				</div>
+				<div class="input-line">
+					<i class="security-icon"></i>
+					<input type="text" class="auth-code" placeholder="验证码">
+					<span class="get-code" id="get-code">获取验证码</span>
+				</div>
+				<div class="input-line">
+					<i class="password-icon"></i>
+					<input type="password" placeholder="密码">
+					<i class="eye-icon"></i>
+				</div>
+			</div>
+			<a href="#" class="go-register">立即注册</a>
+		</div>
+	</div>
+</body>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/base.js"></script>
+<script>
+	var wait=60;  
+      function time(o) { 
+              if (wait == 0) {  
+                  o.text("获取验证码");  
+                  wait = 60;
+                  o.css('pointer-events','auto');
+
+              } else {
+                  o.removeClass('blue');
+                  o.css('pointer-events','none');
+                  wait--; 
+                  o.text(wait + "秒后重试"); 
+                  setTimeout(function() {  
+                      time(o)  
+                  },  
+                  1000)  
+              }  
+          } 
+
+      document.getElementById("get-code").onclick=function(){
+                var _this = $(this);
+                time(_this);
+     } 
+
+     $(".eye-icon").on("click",function(){
+     	$(this).toggleClass('eye-close');
+     	if($(this).siblings('input').prop('type') =='password'){
+			$(this).siblings('input').prop('type','text');
+     	}else{
+     		$(this).siblings('input').prop('type','password');
+     	}
+     })
+     
+</script>
+</html>
